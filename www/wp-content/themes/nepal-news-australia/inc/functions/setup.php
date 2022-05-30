@@ -114,3 +114,45 @@ function nepal_news_australia_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'nepal_news_australia_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'nepal_news_australia_content_width', 0 );
+
+// Hide Login Errors in WordPress
+function remove_default_login_errors(){
+	return 'Error: Username or Password is Incorrect.';
+}
+add_filter( 'login_errors', 'remove_default_login_errors' );
+
+// Change the Footer in WordPress Admin Panel
+add_filter('admin_footer_text', function() {
+echo '<i><b>Developed By <a href="https://webtechnepal.com/" target="_blank">Webtech Nepal</a></b></i>';
+});
+
+## Remove Howdy Text
+function replace_howdy ( $wp_admin_bar ) {
+    $avatar = get_avatar( get_current_user_id(), 16 );
+    if ( ! $wp_admin_bar->get_node( 'my-account' ) )
+        return;
+    $wp_admin_bar->add_node( array(
+        'id' => 'my-account',
+        'title' => sprintf( 'Logged In :  %s', wp_get_current_user()->display_name ) . $avatar,
+    ) );
+}
+add_action( 'admin_bar_menu', 'replace_howdy' );
+
+// Change the login logo with yours
+function my_custom_login_logo() {
+ echo '<style type="text/css">
+.login h1 a { 
+    background-image:url('.get_bloginfo('template_directory').'/images/logo.svg) !important;
+    background-size: 200px !important;
+    width: 100% !important;
+    height: 55px !important;
+    }
+ </style>';
+}
+add_action('login_head', 'my_custom_login_logo');
+
+// change logo url
+add_filter('login_headerurl', 'custom_loginlogo_url');
+function custom_loginlogo_url($url) {
+     return home_url('/');
+}

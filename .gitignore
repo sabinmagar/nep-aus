@@ -3,7 +3,7 @@ wp-config.php
 #Theme Files
 node_modules/
 vendor/
-
+media/
 #logs
 *.log
 *.sqlite

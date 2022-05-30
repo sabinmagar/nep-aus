@@ -8,8 +8,10 @@
  */
 get_header();
 global $post;
+if ( !is_user_logged_in() ) {
 // update post view count
-//nepal_australia_news_setPostViews( get_the_ID() ); // inc/functions/helper.php
+nepal_australia_news_setPostViews( get_the_ID() ); // inc/functions/helper.php
+}
 $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 ?>
 <section class="pb-80">

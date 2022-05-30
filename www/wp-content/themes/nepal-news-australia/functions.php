@@ -4,6 +4,7 @@
  * Load All Required Files
  */
 $files_loader = array(
+	'inc/functions/clean_up.php',
 	'inc/functions/setup.php',
 	'inc/functions/assets.php',
 	'inc/functions/widgets.php',

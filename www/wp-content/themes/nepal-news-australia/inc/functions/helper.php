@@ -1,4 +1,12 @@
 <?php
+// remove delete page cache
+add_filter('redirect_canonical',function( $redirect_url ) {
+    if ( is_404() ) {
+        return false;
+    }
+    return $redirect_url;
+});
+
 // support svg image
 add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
 	$filetype = wp_check_filetype( $filename, $mimes );
@@ -79,5 +87,15 @@ function nepal_australia_news_getPostViews($postID){
 		add_post_meta( $postID, $count_key, '0' );
 		return "0 View";
 	}
-	return $count;
+	return number_format($count);
 } 
+
+// remove render blocking elements
+function defer_parsing_of_js($url)
+{
+  if (is_admin()) return $url; //don't break WP Admin
+  if (false === strpos($url, '.js')) return $url;
+  if (strpos($url, 'jquery.min.js')) return $url;
+  return str_replace(' src', ' defer src', $url);
+}
+add_filter('script_loader_tag', 'defer_parsing_of_js', 10);
