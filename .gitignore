@@ -1,0 +1,16 @@
+.htaccess
+wp-config.php
+#Theme Files
+node_modules/
+vendor/
+
+#logs
+*.log
+*.sqlite
+error_log
+.eslintrc
+.stylelintrc.json
+composer.lock
+package-lock.json
+phpcs.xml.dist
+
