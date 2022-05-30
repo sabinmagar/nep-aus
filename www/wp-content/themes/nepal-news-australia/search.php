@@ -8,46 +8,135 @@
  */
 
 get_header();
-?>
-
-	<main id="primary" class="site-main">
-
-		<?php if ( have_posts() ) : ?>
-
-			<header class="page-header">
-				<h1 class="page-title">
-					<?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'nepal-news-australia' ), '<span>' . get_search_query() . '</span>' );
-					?>
-				</h1>
-			</header><!-- .page-header -->
-
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
-
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', 'search' );
-
-			endwhile;
-
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
+global $post;
+if ( $_GET['s'] && !empty( $_GET['s']) ) {
+	$searchText = $_GET['s'];
+	$query1 = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'paged' => 1, 'posts_per_page' => -1, 's' => $searchText, 'orderby' => 'rand'));
+	$postFound = ( $query1->found_posts );
+	$ppp = 12;
+	$catID = '';
+	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+	$searchArgs = array(
+		'post_type'          => 'post',
+		'posts_per_page'     => $ppp,
+		'post_status'        => 'publish',
+		'paged'        		 => 1,
+		's'					 => $searchText,
+		'orderby'			 => 'rand',
+	);
+	$parentSingle = get_posts( $searchArgs );
+	if ( $parentSingle ) {
 		?>
-
-	</main><!-- #main -->
-
-<?php
-get_sidebar();
+		<section class="wrap__section bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="container">
+							<div class="title-head">
+								<div class="row justify-content-center">
+									<div class="col-md-6 col-sm-12 text-center">
+										<h1>
+											<?php echo $cat->name; ?>
+										</h1>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" id="ppp" data-value="<?php echo $ppp; ?>">
+							<input type="hidden" id="catID" data-value="<?php echo $catID; ?>">  
+							<input type="hidden" id="name" data-value="<?php echo 'search'; ?>">
+							<input type="hidden" id="s" data-value="<?php echo $searchText; ?>">
+							<div class="row" data-count="<?php echo ceil( $postFound / $ppp ); ?>" id="post_append">
+								<?php 
+								foreach ( $parentSingle as $post ) :
+									setup_postdata( $post );
+									$uniqueID = get_the_ID();
+									$imgURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+									$thumbnail = aq_resize( $imgURL, 376, 298, true );
+									if ( $thumbnail ) {
+										$thumbnailURL = $thumbnail;
+									}
+									else {
+										$thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+									}
+									?>
+									<div class="col-lg-4">
+										<!-- Post Article -->
+										<div class="article__entry-new">
+											<div class="article__image articel__image__transition">
+												<a href="<?php echo esc_url( the_permalink() ); ?>">
+													<img src="<?php echo esc_url( $thumbnailURL ); ?>" alt="<?php echo esc_attr( the_title() ); ?>" class="img-fluid">
+												</a>
+											</div>
+											<div class="articel__content">
+												<div class="article__post__title">
+													<h3><a href="<?php echo esc_url( the_permalink() ); ?>">
+														<?php the_title(); ?>
+													</a>
+												</h3>
+												<ul class="list-inline article__post__author">
+													<li class="list-inline-item">
+														<i class="fa fa-calendar"></i>
+													</li>
+													<li class="list-inline-item">
+														<span><?php echo get_the_date("F j, Y"); ?></span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+								<?php 
+							endforeach;
+							wp_reset_postdata();
+							?>
+							<div class="clerfix"></div>
+						</div>                     
+					</div>
+				</div>
+				<?php if ( $postFound > $ppp ) : ?>
+					<div class="col-md-12">
+						<div class="container">
+							<div class="col-md-12">
+								<center><button class="btn btn-primary" id="loadmore_post">Load More</button></center>
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
+			</div>
+		</section>
+		<?php
+	}
+	else { ?>
+		<section>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="wrap__about-us">
+							<h2>
+								<span><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'nepal_australia_news' ); ?></span>
+							</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<?php
+	}
+}
+else { ?>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="wrap__about-us">
+						<h2>
+							<span><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'nepal_australia_news' ); ?></span>
+						</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<?php
+}
 get_footer();

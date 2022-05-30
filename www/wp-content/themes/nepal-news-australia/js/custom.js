@@ -28,8 +28,9 @@
  		loadmore_post: function() {
             var page = 2;
             var ppp = jQuery('#ppp').data('value');
-            var catID = jQuery('#catID').data('value');
-            var name = jQuery('#name').data('value');
+            var catID = jQuery('#catID').data('value'); // for category and tag
+            var name = jQuery('#name').data('value'); // for category and tag
+            var s = jQuery('#s').data('value'); // for search page
             var post_count = jQuery('#post_append').data('count')
             var ajaxURL = NEPAUSobj.ajaxurl;
             var token = NEPAUSobj.token;	
@@ -43,6 +44,7 @@
                     'cat'       : catID,
                     'security'  : token,
                     'name'      : name,
+                    's'         : s,
                 };
                 $.ajax({ // you can also use $.post here
             url : ajaxURL, // AJAX handler

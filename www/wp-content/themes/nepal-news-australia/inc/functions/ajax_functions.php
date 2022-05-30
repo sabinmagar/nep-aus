@@ -28,6 +28,18 @@ function nepal_australia_news_loadmore_post() {
 			);
 			$parentSingle = get_posts( $tagArgs );
 		}
+		elseif ( $name == 'search' ) {
+			$searchText = $_POST['s'];
+			$searchArgs = array(
+				'post_type'          => 'post',
+				'posts_per_page'     => $ppp,
+				'post_status'        => 'publish',
+				'paged'        		 => $pageNumber,
+				's'					 => $searchText,
+				'orderby'			 => 'rand',
+			);
+			$parentSingle = get_posts( $searchArgs );
+		}
 		else {
 
 		}
