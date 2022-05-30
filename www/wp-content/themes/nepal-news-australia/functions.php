@@ -9,6 +9,7 @@ $files_loader = array(
 	'inc/functions/widgets.php',
 	'inc/functions/acf-options.php',
 	'inc/functions/navwalker.php',
+	'inc/functions/breadcrumb.php',
 	'inc/functions/aq_resizer.php',
 	'inc/functions/custom_shortcodes.php',
 	'inc/functions/helper.php',

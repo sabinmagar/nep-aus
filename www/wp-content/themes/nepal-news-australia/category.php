@@ -3,7 +3,7 @@ get_header();
 global $post;
 $cat = get_queried_object();
 $postFound = ( $cat->count );
-$ppp = 3; // post you want to display and load multiplication of 3
+$ppp = 6; // post you want to display and load multiplication of 3
 $catID = $cat->term_id;
 $catArgs = array(
    'cat' => $catID,

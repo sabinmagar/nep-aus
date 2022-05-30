@@ -9,7 +9,7 @@
 get_header();
 global $post;
 // update post view count
-nepal_australia_news_setPostViews( get_the_ID() ); // inc/functions/helper.php
+//nepal_australia_news_setPostViews( get_the_ID() ); // inc/functions/helper.php
 $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 ?>
 <section class="pb-80">
@@ -17,12 +17,10 @@ $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 		<div class="row">
 			<div class="col-md-12">
 				<!-- Breadcrumb -->
-				<ul class="breadcrumbs bg-light mb-4">
-					<li class="breadcrumbs__item">
-						<a href="index.html" class="breadcrumbs__url"> <i class="fa fa-home"></i> होमपेज</a>
-					</li>
-					<li class="breadcrumbs__item breadcrumbs__item--current"> विचार/ब्लग </li>
-				</ul>
+				<?php
+                // inc/functions/breadcrumb.php 
+				echo nepal_australia_news_breadcrumb();
+				?>
 				<!-- end breadcrumb -->
 			</div>
 			<div class="col-md-9">

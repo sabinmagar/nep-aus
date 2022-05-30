@@ -15,7 +15,8 @@ mix
 .options({
     processCssUrls: false,
 })
-.js('assets/js/app.js', 'bundle/js/app.min.js')
-.postCss('css/app.css', 'public/css/app.min.css', [
+.js('js/app.js', 'public/app.min.js')
+.js('js/custom.js', 'public/custom.min.js')
+.postCss('css/app.css', 'public/app.min.css', [
         //
     ]);

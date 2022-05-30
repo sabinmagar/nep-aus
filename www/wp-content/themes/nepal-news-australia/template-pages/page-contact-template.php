@@ -3,27 +3,8 @@
  * Template Name:Contact
  */
 get_header();
+get_template_part('template-parts/common/main','banner');
 ?>
-
-<!-- Breadcrumb  -->
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Breadcrumb -->
-                <ul class="breadcrumbs bg-light mb-4">
-                    <li class="breadcrumbs__item">
-                        <a href="index.html" class="breadcrumbs__url"> <i class="fa fa-home"></i> Home</a>
-                    </li>
-                    <li class="breadcrumbs__item"> <a href="index.html" class="breadcrumbs__url">News</a> </li>
-                    <li class="breadcrumbs__item breadcrumbs__item--current"> World </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Breadcrumb  -->
-
 <!-- Form contact -->
 <section class="wrap__contact-form">
     <div class="container">

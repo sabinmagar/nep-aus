@@ -240,9 +240,10 @@
                               <?php
                               global $post;
                               foreach ( $parentTrendingArgs as $post ) :
+                                 setup_postdata( $post );
                                  ?>
                                  <div class="item-single">
-                                    <a href="javascript:void(0)"><?php the_title(); ?>
+                                    <a href="<?php echo esc_url( the_permalink() ); ?>"><?php the_title(); ?>
                                  </a>
                               </div>
                               <?php 
@@ -260,4 +261,4 @@
       <!-- End Tranding News -->
    <?php } ?>
 </header>
-      <!-- End Header news -->
+<!-- End Header news -->

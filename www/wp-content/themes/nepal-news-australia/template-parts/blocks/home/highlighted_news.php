@@ -1,7 +1,7 @@
 <?php 
 $highlightedEnable = get_field('home_top_banner_enable_section');
 $highlightedAds = get_field('homepage_highlighted_ads','option');
-if ( $highlightedAds ) {
+if ( $highlightedAds ) :
    if ( $highlightedAds['caption'] ) {
       $highlightedAdsLink = $highlightedAds['caption'];
    }
@@ -17,7 +17,7 @@ if ( $highlightedAds ) {
    </figure>
    <!-- End Banner ads -->
    <?php
-}
+endif;
 if ( $highlightedEnable ) {
    if ( have_rows('choose_highlighted_news') ) :
       ?>

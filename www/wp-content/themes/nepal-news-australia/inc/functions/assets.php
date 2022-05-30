@@ -10,12 +10,14 @@ add_action( 'wp_enqueue_scripts', 'nepal_news_australia_load_others' );
 function nepal_news_australia_load_CSS() {
 	// wp_enqueue_style( 'nepal-news-australia-style', get_stylesheet_uri(), array(), _S_VERSION );
 	// wp_style_add_data( 'nepal-news-australia-style', 'rtl', 'replace' );
-	wp_enqueue_style( 'appStyle', get_template_directory_uri() . '/css/styles.css');
+	// wp_enqueue_style( 'appStyle', get_template_directory_uri() . '/css/styles.css');
+	wp_enqueue_style( 'appStyle', get_template_directory_uri() . '/public/app.min.css');
 }
 
 // load All JS Files
 function nepal_news_australia_load_JS() {
-	wp_enqueue_script( 'appScript', get_template_directory_uri() . '/js/index.bundle.js', array('jquery'), false, true );
+	// wp_enqueue_script( 'appScript', get_template_directory_uri() . '/js/index.bundle.js', array('jquery'), false, true );
+	wp_enqueue_script( 'appScript', get_template_directory_uri() . '/public/app.min.js', array('jquery'), false, true );
 	wp_enqueue_script( 'nepal-news-australia-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -26,7 +28,7 @@ function nepal_news_australia_load_JS() {
 
 // load Other File
 function nepal_news_australia_load_others() {
-	wp_register_script( 'nepal-australia-custom', get_template_directory_uri() . '/js/custom.js', array('jquery'), false, true );
+	wp_register_script( 'nepal-australia-custom', get_template_directory_uri() . '/public/custom.min.js', array('jquery'), false, true );
 	wp_enqueue_script( 'nepal-australia-custom' );
 	wp_localize_script( 'nepal-australia-custom', 'NEPAUSobj', array(
 		'ajaxurl' => admin_url( 'admin-ajax.php' ),
