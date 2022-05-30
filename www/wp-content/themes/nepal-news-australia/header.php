@@ -174,17 +174,19 @@
             <div class="modal-dialog modal-dialog-aside" role="document">
                <div class="modal-content">
                   <div class="modal-header">
-                     <div class="widget__form-search-bar  ">
+                     <div class="widget__form-search-bar">
+                        <form method="GET" action="<?php echo esc_url( home_url('/') ); ?>">
                         <div class="row no-gutters">
                            <div class="col">
-                              <input class="form-control border-secondary border-right-0 rounded-0" value="" placeholder="Search">
+                              <input class="form-control border-secondary border-right-0 rounded-0" placeholder="Search" name="s">
                            </div>
                            <div class="col-auto">
-                              <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right">
+                              <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="submit">
                                  <i class="fa fa-search"></i>
                               </button>
                            </div>
                         </div>
+                         </form>
                      </div>
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
