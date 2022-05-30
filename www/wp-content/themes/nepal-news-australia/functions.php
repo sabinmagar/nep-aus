@@ -12,6 +12,7 @@ $files_loader = array(
 	'inc/functions/aq_resizer.php',
 	'inc/functions/custom_shortcodes.php',
 	'inc/functions/helper.php',
+	'inc/functions/ajax_functions.php',
 	'inc/custom-header.php',
 	'inc/template-tags.php',
 	'inc/template-functions.php',

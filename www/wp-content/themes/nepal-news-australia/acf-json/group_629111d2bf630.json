@@ -303,11 +303,13 @@
                                 "id": ""
                             },
                             "choices": {
-                                "A": "Address",
-                                "B": "Website"
+                                "fa-home": "Home",
+                                "fa-phone": "Phone",
+                                "fa-envelope": "Mail",
+                                "fa-globe": "Website"
                             },
                             "default_value": false,
-                            "allow_null": 0,
+                            "allow_null": 1,
                             "multiple": 0,
                             "ui": 0,
                             "return_format": "value",
@@ -336,6 +338,60 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "field_62945d8f96dbd",
+            "label": "Extra",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_629465423d602",
+            "label": "Trending News Title",
+            "name": "trending_news_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_62945d9596dbe",
+            "label": "Related Post Title",
+            "name": "related_post_title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -356,5 +412,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1653804618
+    "modified": 1653892429
 }

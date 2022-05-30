@@ -83,78 +83,11 @@ if ( $australiaNewsEnable ) {
       </div>
    </div>
    <!-- End Category news -->
-   
-   <div class="col-md-3">
-
-
-
-      <div class="sidebar-section">
-         <center>
-            <div class="wrapper-box">
-               <div class="cubic-area">
-                  <div class="cubic-one">
-                     <a target="_blank" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/1.png"></a>
-                  </div>
-                  <div class="cubic-two">
-                     <a target="_blank" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/2.png"></a>
-                  </div>
-                  <div class="cubic-three">
-                     <a target="_blank" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/3.png"></a>
-                  </div>
-                  <div class="cubic-four">
-                     <a target="_blank" href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/4.png"></a>
-                  </div>
-               </div>
-            </div>
-         </center>
-
-         <!-- Banner news -->
-         <aside class="wrapper__list__article">
-
-
-           <a href="#">
-              <figure>
-                 <img src="https://www.onlinekhabar.com/wp-content/uploads/2022/04/VatikaReal_Pet300X200px_OK.gif" alt="" class="img-fluid">
-              </figure>
-           </a>
-
-           <a href="#">
-              <figure>
-                 <img src="https://www.onlinekhabar.com/wp-content/uploads/2021/11/300x2002.gif" alt="" class="img-fluid">
-              </figure>
-           </a>
-
-           <a href="#">
-              <figure>
-                 <img src="https://www.onlinekhabar.com/wp-content/uploads/2022/05/A-levels-300X150px-1.gif" alt="" class="img-fluid">
-              </figure>
-           </a>
-
-           <a href="#">
-              <figure>
-                 <img src="https://www.onlinekhabar.com/wp-content/uploads/2022/04/300x200-1.gif" alt="" class="img-fluid">
-              </figure>
-           </a>
-
-           <a href="#">
-              <figure>
-                 <img src="https://www.onlinekhabar.com/wp-content/uploads/2022/04/VatikaReal_Pet300X200px_OK.gif" alt="" class="img-fluid">
-              </figure>
-           </a>
-
-           <a href="#">
-              <figure>
-                 <img src="https://www.onlinekhabar.com/wp-content/uploads/2022/04/300x200-1.gif" alt="" class="img-fluid">
-              </figure>
-           </a>
-
-
-        </aside>
-        <!-- End Banner news -->
-     </div>
-  </div>
-
-  <div class="clearfix"></div>
+   <?php 
+   // sidebar ads
+   get_template_part('template-parts/common/sidebar','ads');
+   ?>
+   <div class="clearfix"></div>
 </div>
 </div>
 </section>

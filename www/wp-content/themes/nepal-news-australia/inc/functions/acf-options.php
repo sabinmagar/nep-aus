@@ -14,4 +14,16 @@ add_action( 'init', function() {
 			'icon_url'		=> 'dashicons-admin-network',
 		]
 	);
+
+	acf_add_options_page(
+		[
+			'page_title' 	=> 'Ads Management',
+			'menu_title'	=> 'Ads Management',
+			'menu_slug' 	=> 'ads-management',
+			'capability'	=> 'edit_posts',
+			'icon_url'		 => 'dashicons-media-spreadsheet',
+			'redirect'		=> false,
+			'position'		=> 5
+		]
+	);
 });

@@ -13,16 +13,16 @@
 <!doctype html>
    <html <?php language_attributes(); ?>>
    <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="profile" href="https://gmpg.org/xfn/11">
-    <!-- google fonts -->
-    <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,400&display=swap"
-    rel="stylesheet">
-    <?php wp_head(); ?>
- </head>
- <body <?php body_class(); ?>>
+     <meta charset="<?php bloginfo( 'charset' ); ?>">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="profile" href="https://gmpg.org/xfn/11">
+     <!-- google fonts -->
+     <link
+     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,400&display=swap"
+     rel="stylesheet">
+     <?php wp_head(); ?>
+  </head>
+  <body <?php body_class(); ?>>
    <?php wp_body_open(); ?>
    <!-- Header news -->
    <header>
@@ -101,13 +101,24 @@
                         </a>
                      </figure>
                   </div>
-                  <div class="col-md-8 d-none d-sm-block ">
-                     <figure class="mt-3 ">
-                        <a href="#">
-                           <img src="<?php echo get_template_directory_uri(); ?>/images/ads.gif" alt="" class="img-fluid">
-                        </a>
-                     </figure>
-                  </div>
+                  <?php 
+                  $navbarAds = get_field('header_ads','option');
+                  if ( $navbarAds ) {
+                     if ( $navbarAds['caption'] ) {
+                        $navbarAdsLink = $navbarAds['caption'];
+                     }
+                     else {
+                        $navbarAdsLink = '#';
+                     }
+                     ?>
+                     <div class="col-md-8 d-none d-sm-block ">
+                        <figure class="mt-3 ">
+                           <a href="<?php echo esc_url( $navbarAdsLink ); ?>">
+                              <img src="<?php echo esc_url( $navbarAds['url'] ); ?>" alt="<?php echo esc_attr( $navbarAds['alt'] ); ?>" class="img-fluid">
+                           </a>
+                        </figure>
+                     </div>
+                  <?php } ?>
                </div>
             </div>
          </div>
@@ -201,30 +212,43 @@
          <!-- modal.// -->
       <?php endif; ?>
       <!-- End Navbar  -->
-      <!-- Tranding News -->
-      <div class="bg-white">
-         <!-- Trending News Start -->
-         <div class="trending-news pt-4 border-tranding">
-            <div class="container">
-               <div class="row">
-                  <div class="col">
-                     <div class="trending-news-inner">
-                        <div class="title">
-                           <i class="fa fa-bolt"></i>
-                           <strong>trending news</strong>
-                        </div>
-                        <div class="trending-news-slider">
-                           <div class="item-single">
-                              <a href="javascript:void(0)">छन्त्यालले जित्यो टिका कार्की स्मृती भलिबल उपाधि: बाग्लुङ अस्ट्रेलियन समाजको आयोजनामा सन्चालित प्र
-                              .</a>
+      <?php
+      $trendingTitle = get_field('trending_news_title','option');
+      $trendingArgs = array(
+         'post_type'        => 'post',
+         'posts_per_page'   => 5,
+         'meta_key'         => 'post_views_count',
+         'orderby'          => 'meta_value_num',
+         'order'            => 'DESC',
+      );
+      $parentTrendingArgs = get_posts( $trendingArgs );
+      if ( $parentTrendingArgs ) {
+         ?>
+         <!-- Tranding News -->
+         <div class="bg-white">
+            <!-- Trending News Start -->
+            <div class="trending-news pt-4 border-tranding">
+               <div class="container">
+                  <div class="row">
+                     <div class="col">
+                        <div class="trending-news-inner">
+                           <div class="title">
+                              <i class="fa fa-bolt"></i>
+                              <strong><?php echo $trendingTitle; ?></strong>
                            </div>
-                           <div class="item-single">
-                              <a href="javascript:void(0)">एडिलेड नेप्लिज क्रिकेट एसोशियसन(एन्का)ले बालबालिकालाई क्रिकेट खेलाउने: ३० अप्रिल ,सिड्नी । एडिलेडमा
-                              </a>
-                           </div>
-                           <div class="item-single">
-                              <a href="javascript:void(0)">नगरको बिकासमा राजनीति भन्दा माथि उठ्नु पर्छ - सुसन बैद्य: बैशाख ३० गते हुने स्थानिय निर्बाचनको लाग</a>
-                           </div>
+                           <div class="trending-news-slider">
+                              <?php
+                              global $post;
+                              foreach ( $parentTrendingArgs as $post ) :
+                                 ?>
+                                 <div class="item-single">
+                                    <a href="javascript:void(0)"><?php the_title(); ?>
+                                 </a>
+                              </div>
+                              <?php 
+                           endforeach;
+                           wp_reset_postdata();
+                           ?>
                         </div>
                      </div>
                   </div>
@@ -234,5 +258,6 @@
          <!-- Trending News End -->
       </div>
       <!-- End Tranding News -->
-   </header>
+   <?php } ?>
+</header>
       <!-- End Header news -->

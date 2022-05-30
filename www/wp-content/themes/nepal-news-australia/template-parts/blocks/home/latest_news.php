@@ -63,14 +63,24 @@ if ( $latestNewsEnable ) {
                </div>
             </div>
             <!-- End Popular news carousel -->
-
-            <!-- Banner ads -->
-            <figure class="mt-4 mb-4 text-center">
-               <a href="#">
-                  <img src="http://www.nepalnewsaustralia.com.au/wp-content/uploads/web_banner_bottom-1.gif" alt="" class="img-fluid">
-               </a>
-            </figure>
-            <!-- End Banner ads -->
+            <?php 
+            $newsAds = get_field('below_samachar_ads','option');
+            if ( $newsAds ) {
+               if ( $newsAds['caption'] ) {
+                  $newsAdsLink = $newsAds['caption'];
+               }
+               else {
+                  $newsAdsLink = '#';
+               }
+               ?>
+               <!-- Banner ads -->
+               <figure class="mt-4 mb-4 text-center">
+                  <a href="<?php echo esc_url( $newsAdsLink ); ?>" target="_blank">
+                     <img src="<?php echo esc_url( $newsAds['url'] ); ?>" alt="<?php echo esc_attr( $newsAds['alt'] ); ?>" class="img-fluid">
+                  </a>
+               </figure>
+               <!-- End Banner ads -->
+            <?php } ?>
          </div>
          <!-- End Category news -->
          <?php 
