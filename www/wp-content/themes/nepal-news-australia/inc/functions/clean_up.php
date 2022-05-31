@@ -13,8 +13,6 @@ if ( ! function_exists( 'base_start_cleanup' ) ) :
 		add_filter( 'wp_head', 'base_remove_wp_widget_recent_comments_style', 1 );
 	// Clean up comment styles in the head.
 		add_action( 'wp_head', 'base_remove_recent_comments_style', 1 );
-  // Change JPEG Compression
-		add_filter( 'jpeg_quality', create_function( '', 'return 100;' ) );
 	}
 	add_action( 'after_setup_theme','base_start_cleanup' );
 endif;
