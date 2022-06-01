@@ -3,7 +3,7 @@ get_header();
 global $post;
 $cat = get_queried_object();
 $postFound = ( $cat->count );
-$ppp = 6; // post you want to display and load multiplication of 3
+$ppp = 12; // post you want to display and load multiplication of 3
 $catID = $cat->term_id;
 $catArgs = array(
    'cat' => $catID,
@@ -82,7 +82,8 @@ $parentSingle = get_posts( $catArgs );
       <div class="col-md-12">
        <div class="container">
         <div class="col-md-12">
-         <center><button class="btn btn-primary" id="loadmore_post">Load More</button></center>
+         <center><button class="btn btn-primary" id="loadmore_post">Load More</button>
+            <div id="loader"><img src="<?php echo get_template_directory_uri(); ?>/images/infinity.svg" alt="Loading" style="display: none;" /></div></center>
       </div>
    </div>
 </div>

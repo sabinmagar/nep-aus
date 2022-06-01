@@ -16,7 +16,12 @@ if ( $threeColNewsEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => 3,
    );
-   $parentThreeColNews = get_posts( $threeColNewsArgs );
+   // cache for Query
+   $parentThreeColNews = get_transient( 'three_col1_news_transient' );
+   if ( false === $parentThreeColNews ) {
+      $parentThreeColNews = get_posts( $threeColNewsArgs );      
+      set_transient( 'three_col1_news_transient', $parentThreeColNews, DAY_IN_SECONDS );
+   }
    $newsColumnIDs = array();
    ?>
    <!-- Australia Content news -->
@@ -112,7 +117,12 @@ if ( $threeColNewsEnable ) {
                   'post__not_in'    => $newsColumnIDs,
                   'posts_per_page'  => 3,
                );
-                $parentThreeColNews = get_posts( $threeColNewsArgs );
+                // cache for Query
+                $parentThreeColNews = get_transient( 'three_col2_news_transient' );
+                if ( false === $parentThreeColNews ) {
+                  $parentThreeColNews = get_posts( $threeColNewsArgs );       
+                  set_transient( 'three_col2_news_transient', $parentThreeColNews, DAY_IN_SECONDS );
+               }
                 ?>
                 <div class="col-lg-4 pd-0">
                   <?php
@@ -198,7 +208,12 @@ if ( $threeColNewsEnable ) {
             'post__not_in'    => $newsColumnIDs,
             'posts_per_page'  => 3,
          );
-          $parentThreeColNews = get_posts( $threeColNewsArgs );
+          // cache for Query
+          $parentThreeColNews = get_transient( 'three_col3_news_transient' );
+          if ( false === $parentThreeColNews ) {
+            $parentThreeColNews = get_posts( $threeColNewsArgs );       
+            set_transient( 'three_col3_news_transient', $parentThreeColNews, DAY_IN_SECONDS );
+         }
           ?>
           <div class="col-lg-4 pd-0">
             <?php

@@ -16,7 +16,12 @@ if ( $slideNewsEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => $numberToShow,
    );
-   $parentSliderNews = get_posts( $sliderNewsArgs );
+   // cache for Query
+   $parentSliderNews = get_transient( 'slider_news_transient' );
+   if ( false === $parentSliderNews ) {
+      $parentSliderNews = get_posts( $sliderNewsArgs );      
+      set_transient( 'slider_news_transient', $parentSliderNews, DAY_IN_SECONDS );
+   }
    if ( $parentSliderNews ) {
       ?>
       <!-- Australia Content news -->

@@ -8,7 +8,12 @@ if ( $latestNewsEnable ) {
     'post_status'  => 'publish',
     'posts_per_page' => 1,
  );
-   $parentLatestNews = get_posts( $latestNewsArgs );
+   // cache for Query
+   $parentLatestNews = get_transient( 'latest_news_transient' );
+   if ( false === $parentLatestNews ) {
+      $parentLatestNews = get_posts( $latestNewsArgs );       
+      set_transient( 'latest_news_transient', $parentLatestNews, DAY_IN_SECONDS );
+   }
    ?>
    <!-- Popular Content news -->
    <section class="bg-content">

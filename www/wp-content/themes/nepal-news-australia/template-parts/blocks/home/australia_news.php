@@ -16,7 +16,12 @@ if ( $australiaNewsEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => $numberToShow,
    );
-   $parentAusNews = get_posts( $ausNewsArgs );
+   // cache for Query
+   $parentAusNews = get_transient( 'aus_news_transient' );
+   if ( false === $parentAusNews ) {
+      $parentAusNews = get_posts( $ausNewsArgs );       
+      set_transient( 'aus_news_transient', $parentAusNews, DAY_IN_SECONDS );
+   }
    if ( $parentAusNews ) {
       ?>
       <!-- Australia Content news -->

@@ -15,7 +15,12 @@ if ( $twoNewsThreeColEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => 3,
    );
-   $parentFirstNews = get_posts( $firstNewsArgs );
+   // cache for Query
+   $parentFirstNews = get_transient( 'two_news_three_col1_transient' );
+   if ( false === $parentFirstNews ) {
+      $parentFirstNews = get_posts( $firstNewsArgs );       
+      set_transient( 'two_news_three_col1_transient', $parentFirstNews, DAY_IN_SECONDS );
+   }
    $firstNewsID = array();
    ?>
    <!-- Manoranjan Content news -->
@@ -112,7 +117,12 @@ if ( $twoNewsThreeColEnable ) {
                   'post__not_in'    => $firstNewsID,
                   'posts_per_page'  => 3,
                );
-                 $parentFirstNews = get_posts( $firstNewsArgs );
+                 // cache for Query
+                 $parentFirstNews = get_transient( 'two_news_three_col2_transient' );
+                 if ( false === $parentFirstNews ) {
+                  $parentFirstNews = get_posts( $firstNewsArgs );       
+                  set_transient( 'two_news_three_col2_transient', $parentFirstNews, DAY_IN_SECONDS );
+               }
                  ?>
                  <div class="col-lg-6 pd-0">
                   <?php
@@ -139,12 +149,12 @@ if ( $twoNewsThreeColEnable ) {
                            </div>
                            <div class="article__content">
                               <h4 class="news-title">
-                                 <a href="#"> <?php the_title(); ?> </a>
+                                 <a href="<?php echo esc_url( the_permalink() ); ?>"> <?php the_title(); ?> </a>
                               </h4>
                               <p>
                                  <?php echo wp_trim_words( get_the_content(), 13, '...' ); ?>
                               </p>
-                              <a href="#" class="btn btn-outline-primary mb-4 text-capitalize"> read more</a>
+                              <a href="<?php echo esc_url( the_permalink() ); ?>" class="btn btn-outline-primary mb-4 text-capitalize"> read more</a>
                            </div>
                         </div>
                         <?php 
@@ -170,7 +180,7 @@ if ( $twoNewsThreeColEnable ) {
                                  <div class="card__post__content">
                                     <div class="card__post__title">
                                        <h4 class="news-title">
-                                          <a href="./card-article-detail-v1.html">
+                                          <a href="<?php echo esc_url( the_permalink() ); ?>">
                                             <?php the_title(); ?>
                                          </a>
                                       </h4>
@@ -206,7 +216,12 @@ if ( $twoNewsThreeColEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => 3,
    );
-   $parentSecondNews = get_posts( $secondNewsArgs );
+    // cache for Query
+   $parentSecondNews = get_transient( 'two_news_three_col3_transient' );
+   if ( false === $parentSecondNews ) {
+      $parentSecondNews = get_posts( $secondNewsArgs );       
+      set_transient( 'two_news_three_col3_transient', $parentSecondNews, DAY_IN_SECONDS );
+   }
    if ( $parentSecondNews ) {
       ?>
       <div class="col-md-4">

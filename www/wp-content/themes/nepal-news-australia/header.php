@@ -132,7 +132,7 @@
                         <span class="navbar-toggler-icon"></span>
                      </div>
                   </div>
-                  <figure class="mb-0 mx-auto d-block d-sm-none sticky-logo">
+                  <figure class="mb-0 mx-auto d-block d-sm-none sticky-logo mt-4">
                      <a href="<?php echo esc_url( home_url('/') ); ?>">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="" class="img-fluid logo">
                      </a>
