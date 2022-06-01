@@ -13,7 +13,7 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 	$searchText = $_GET['s'];
 	$query1 = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'paged' => 1, 'posts_per_page' => -1, 's' => $searchText, 'orderby' => 'rand'));
 	$postFound = ( $query1->found_posts );
-	$ppp = 12;
+	$ppp = 18;
 	$catID = '';
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	$searchArgs = array(
@@ -56,7 +56,7 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 										$thumbnailURL = $thumbnail;
 									}
 									else {
-										$thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+										$thumbnailURL = get_template_directory_uri().'/images/news-default.png';
 									}
 									?>
 									<div class="col-lg-4">

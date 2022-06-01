@@ -98,3 +98,6 @@ function remove_query_strings_split($src){
 }
 
 add_action('init', 'remove_query_strings');
+
+## Removing the "Welcome" widget
+remove_action( 'welcome_panel', 'wp_welcome_panel' );

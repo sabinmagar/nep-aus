@@ -41,7 +41,7 @@ if ( $highlightedEnable ) {
                            $thumbnailURL = $thumbnail;
                         }
                         else {
-                           $thumbnailURL = get_the_post_thumbnail_url( $highlightNews->ID, 'full');
+                           $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                         }
                         ?>
                         <center>

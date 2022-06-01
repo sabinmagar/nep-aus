@@ -45,7 +45,7 @@ if ( $slideNewsEnable ) {
                                     $thumbnailURL = $thumbnail;
                                  }
                                  else {
-                                    $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                                    $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                                  }
                                  ?>
                                  <div class="item">
