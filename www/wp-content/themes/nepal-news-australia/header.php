@@ -111,7 +111,7 @@
                         $navbarAdsLink = '#';
                      }
                      ?>
-                     <div class="col-md-8 d-none d-sm-block ">
+                     <div class="col-md-8 d-none d-sm-block text-right">
                         <figure class="mt-3 ">
                            <a href="<?php echo esc_url( $navbarAdsLink ); ?>">
                               <img src="<?php echo esc_url( $navbarAds['url'] ); ?>" alt="<?php echo esc_attr( $navbarAds['alt'] ); ?>" class="img-fluid">

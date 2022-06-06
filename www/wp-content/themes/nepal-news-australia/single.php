@@ -63,9 +63,11 @@ $topAds = get_field('top_ads','option');
 						<hr>
 					<?php } ?>
 					<div class="wrap__article-detail-image mt-4">
-						<figure>
-							<img src="<?php echo esc_url( $thumbnailURL ); ?>" alt="<?php echo esc_attr( the_title() ); ?>" class="img-fluid">
-						</figure>
+						<center>
+							<figure>
+								<img src="<?php echo esc_url( $thumbnailURL ); ?>" alt="<?php echo esc_attr( the_title() ); ?>" class="img-fluid">
+							</figure>
+						</center>
 					</div>
 					<hr>
 					<div class="wrap__article-detail-content">
@@ -74,13 +76,15 @@ $topAds = get_field('top_ads','option');
 				</div>
 				<!-- end content article detail -->
 				<?php
-				$tagTerms = get_tags(array('hide_empty' => false));
+				$relatedTags = get_the_tags();
+				//var_dump($relatedTags);
+				$tagTerms = get_the_tags( get_the_ID() );
 				if ( $tagTerms ) {
 					?>
 					<!-- tags -->
 					<!-- News Tags -->
 					<div class="blog-tags">
-						<ul class="list-inline">
+						<ul class="list-inline" id="tag-lists">
 							<li class="list-inline-item"> <i class="fa fa-tags">
 							</i> </li>
 							<?php
@@ -92,6 +96,13 @@ $topAds = get_field('top_ads','option');
 								</a> </li>
 							<?php endforeach; ?>
 						</ul>
+						<div class="col-md-12 mt-4">
+							<div class="container">
+								<div class="col-md-12 pl-md-0">
+									<button class="btn btn-primary" id="loadmore_tag" style="display: none;">View More</button>	
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- end tags-->
 				<?php } ?>				
