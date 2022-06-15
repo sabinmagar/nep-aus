@@ -13,76 +13,100 @@
 <!doctype html>
    <html <?php language_attributes(); ?>>
    <head>
-     <meta charset="<?php bloginfo( 'charset' ); ?>">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="profile" href="https://gmpg.org/xfn/11">
-     <!-- google fonts -->
-     <link
-     href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,400&display=swap"
-     rel="stylesheet">
-     <?php wp_head(); ?>
-  </head>
-  <body <?php body_class(); ?>>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="https://gmpg.org/xfn/11">
+    <!-- google fonts -->
+    <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,300;1,500&family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,400&display=swap"
+    rel="stylesheet">
+    <?php wp_head(); ?>
+ </head>
+ <body <?php body_class(); ?>>
    <?php wp_body_open(); ?>
-   <!-- Header news -->
-   <header>
-      <!-- Navbar  -->
-      <div class="topbar d-none d-sm-block">
-         <div class="container ">
-            <div class="row">
-               <div class="col-sm-12 col-md-5">
-                  <div class="topbar-left">
-                     <div class="topbar-text">
-                        <?php echo date("l, F j, Y"); ?>
-                     </div>
+   <?php 
+   $enableSkipAds = get_field('na_enable_skip_ads','option');
+   if ( $enableSkipAds ) {
+      $desktopImage = get_field('na_image_for_desktop','option');
+      $mobileImage = get_field('na_image_for_mobile','option');
+      ?>
+      <!--<popup>-->
+       <div class="modalbox" id="inner-jacket">
+         <div class="modal_content">
+           <div class="imagebox">
+             <div class="logobox">
+               <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="logo" />
+            </div>
+            <div class="close-box">
+               <a class="close_btn" href="javascript:void(0)" onclick="document.getElementById('inner-jacket').style.display='none'" title="Skip Ad">Skip Ad</a>
+            </div>
+
+            <a href="#" title="" target="_blank" class="jacket-ad-desktop"> <img src="<?php echo esc_url( $desktopImage['url'] ); ?>" alt="" /> </a>
+            <a href="#" title="" target="_blank" class="jacket-ad-mobile"> <img src="mobile.jpg" alt="" /> </a>
+         </div>
+      </div>
+   </div>
+   <!--</popup>-->
+<?php } ?>
+<!-- Header news -->
+<header>
+   <!-- Navbar  -->
+   <div class="topbar d-none d-sm-block">
+      <div class="container ">
+         <div class="row">
+            <div class="col-sm-12 col-md-5">
+               <div class="topbar-left">
+                  <div class="topbar-text">
+                     <?php echo date("l, F j, Y"); ?>
                   </div>
                </div>
-               <div class="col-sm-12 col-md-7">
-                  <div class="list-unstyled topbar-right">
-                     <?php if ( have_rows('top_left_page_links','option') ) : ?>
-                        <ul class="topbar-link">
-                           <?php while ( have_rows('top_left_page_links','option') ) :
-                              the_row();
-                              $topPages = get_sub_field('top_page_link','option');
-                              if ( $topPages ) {
-                                 ?>
-                                 <li><a href="<?php echo esc_url( $topPages['url'] ); ?>" title="<?php echo esc_html( $topPages['title'] ); ?>" target="<?php echo esc_attr( $topPages['target'] ); ?>">
-                                    <?php echo esc_html( $topPages['title'] ); ?>
-                                 </a></li>
-                                 <?php 
-                              }
-                           endwhile;
-                           ?>
-                        </ul>
-                     <?php endif; ?>
-                     <?php if ( have_rows('social_media','option') ) : ?>
-                        <ul class="topbar-sosmed">
-                           <?php while ( have_rows('social_media','option') ) :
-                              the_row();
-                              $icon = get_sub_field('social_icon','option');
-                              $iconLink = get_sub_field('social_link','option') ? get_sub_field('social_link','option') : '#';
-                              if ( $icon ) {
-                                 ?>
-                                 <li>
-                                    <a href="<?php echo esc_url( $iconLink ); ?>" target="_blank"><i class="fa <?php echo $icon; ?>"></i></a>
-                                 </li>
-                                 <?php 
-                              }
-                           endwhile;
-                           ?>
-                        </ul>
-                     <?php endif; ?>
-                  </div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+               <div class="list-unstyled topbar-right">
+                  <?php if ( have_rows('top_left_page_links','option') ) : ?>
+                     <ul class="topbar-link">
+                        <?php while ( have_rows('top_left_page_links','option') ) :
+                           the_row();
+                           $topPages = get_sub_field('top_page_link','option');
+                           if ( $topPages ) {
+                              ?>
+                              <li><a href="<?php echo esc_url( $topPages['url'] ); ?>" title="<?php echo esc_html( $topPages['title'] ); ?>" target="<?php echo esc_attr( $topPages['target'] ); ?>">
+                                 <?php echo esc_html( $topPages['title'] ); ?>
+                              </a></li>
+                              <?php 
+                           }
+                        endwhile;
+                        ?>
+                     </ul>
+                  <?php endif; ?>
+                  <?php if ( have_rows('social_media','option') ) : ?>
+                     <ul class="topbar-sosmed">
+                        <?php while ( have_rows('social_media','option') ) :
+                           the_row();
+                           $icon = get_sub_field('social_icon','option');
+                           $iconLink = get_sub_field('social_link','option') ? get_sub_field('social_link','option') : '#';
+                           if ( $icon ) {
+                              ?>
+                              <li>
+                                 <a href="<?php echo esc_url( $iconLink ); ?>" target="_blank"><i class="fa <?php echo $icon; ?>"></i></a>
+                              </li>
+                              <?php 
+                           }
+                        endwhile;
+                        ?>
+                     </ul>
+                  <?php endif; ?>
                </div>
             </div>
          </div>
       </div>
-      <!-- logo -->
-      <div class="bg-white ">
-         <div class="container">
-            <div class="row">
-               <div class=" col-sm-12 col-md-4 my-auto d-none d-sm-block ">
-                  <?php 
+   </div>
+   <!-- logo -->
+   <div class="bg-white ">
+      <div class="container">
+         <div class="row">
+            <div class=" col-sm-12 col-md-4 my-auto d-none d-sm-block ">
+               <?php 
                      $custom_logo_id = get_theme_mod( 'custom_logo' ); // API Call
                      $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
                      ?>
@@ -176,17 +200,17 @@
                   <div class="modal-header">
                      <div class="widget__form-search-bar">
                         <form method="GET" action="<?php echo esc_url( home_url('/') ); ?>">
-                        <div class="row no-gutters">
-                           <div class="col">
-                              <input class="form-control border-secondary border-right-0 rounded-0" placeholder="Search" name="s">
+                           <div class="row no-gutters">
+                              <div class="col">
+                                 <input class="form-control border-secondary border-right-0 rounded-0" placeholder="Search" name="s">
+                              </div>
+                              <div class="col-auto">
+                                 <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="submit">
+                                    <i class="fa fa-search"></i>
+                                 </button>
+                              </div>
                            </div>
-                           <div class="col-auto">
-                              <button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="submit">
-                                 <i class="fa fa-search"></i>
-                              </button>
-                           </div>
-                        </div>
-                         </form>
+                        </form>
                      </div>
                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
