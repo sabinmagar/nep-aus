@@ -16,7 +16,12 @@ if ( $nepalNewsEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => $numberToShow,
    );
-   $parentNepNews = get_posts( $nepNewsArgs );
+   // cache for Query
+   $parentNepNews = get_transient( 'nepal_news_transient' );
+   if ( false === $parentNepNews ) {
+      $parentNepNews = get_posts( $nepNewsArgs );      
+      set_transient( 'nepal_news_transient', $parentNepNews, DAY_IN_SECONDS );
+   }
    if ( $parentNepNews ) {
       ?>
       <!-- Nepal Content news -->
@@ -39,7 +44,7 @@ if ( $nepalNewsEnable ) {
                            $thumbnailURL = $thumbnail;
                         }
                         else {
-                           $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                           $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                         }
                         if ( $newsCount < 3 ) {
                            $class = '';

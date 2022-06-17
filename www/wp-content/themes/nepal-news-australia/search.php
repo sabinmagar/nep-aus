@@ -13,7 +13,7 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 	$searchText = $_GET['s'];
 	$query1 = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'paged' => 1, 'posts_per_page' => -1, 's' => $searchText, 'orderby' => 'rand'));
 	$postFound = ( $query1->found_posts );
-	$ppp = 12;
+	$ppp = 21;
 	$catID = '';
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	$searchArgs = array(
@@ -56,7 +56,7 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 										$thumbnailURL = $thumbnail;
 									}
 									else {
-										$thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+										$thumbnailURL = get_template_directory_uri().'/images/news-default.png';
 									}
 									?>
 									<div class="col-lg-4">
@@ -97,14 +97,32 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 					<div class="col-md-12">
 						<div class="container">
 							<div class="col-md-12">
-								<center><button class="btn btn-primary" id="loadmore_post">Load More</button></center>
+								<center><button class="btn btn-primary" id="loadmore_post">Load More</button>
+									<div id="loader"><img src="<?php echo get_template_directory_uri(); ?>/images/infinity.svg" alt="Loading" style="display: none;" /></div></center>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+				</div>
+			</section>
+			<?php
+		}
+		else { ?>
+			<section>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="wrap__about-us">
+								<h2>
+									<span><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'nepal_australia_news' ); ?></span>
+								</h2>
 							</div>
 						</div>
 					</div>
-				<?php endif; ?>
-			</div>
-		</section>
-		<?php
+				</div>
+			</section>
+			<?php
+		}
 	}
 	else { ?>
 		<section>
@@ -122,21 +140,4 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 		</section>
 		<?php
 	}
-}
-else { ?>
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="wrap__about-us">
-						<h2>
-							<span><?php esc_html_e( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'nepal_australia_news' ); ?></span>
-						</h2>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<?php
-}
-get_footer();
+	get_footer();

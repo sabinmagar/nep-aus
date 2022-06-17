@@ -24,7 +24,7 @@ function nepal_news_australia_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'nepal-news-australia' ),
 			'before_widget' => '<div class="link__category">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<h4 class="footer-title">',
+			'before_title'  => '<h4 class="footer-title mb-4">',
 			'after_title'   => '</h4>',
 		)
 	);

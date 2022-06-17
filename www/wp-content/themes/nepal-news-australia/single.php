@@ -12,7 +12,14 @@ if ( !is_user_logged_in() ) {
 // update post view count
 nepal_australia_news_setPostViews( get_the_ID() ); // inc/functions/helper.php
 }
-$thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+$thumbnail = get_the_post_thumbnail_url( get_the_ID(), 'full');
+if ( $thumbnail ) {
+	$thumbnailURL = $thumbnail;
+}
+else {
+	$thumbnailURL = get_template_directory_uri().'/images/news-default.png';
+}
+$topAds = get_field('top_ads','option');
 ?>
 <section class="pb-80">
 	<div class="container">
@@ -44,12 +51,23 @@ $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 						</ul>
 					</div>
 					<hr>
-					<center> <img src="http://www.nepalnewsaustralia.com.au/wp-content/uploads/web_banner_bottom-1.gif"> </center>
-					<hr>
+					<?php if ( $topAds ) {
+						if ( $topAds['caption'] ) {
+							$topAdsLink = $topAds['caption'];
+						}
+						else {
+							$topAdsLink = $topAds['caption'];
+						}
+						?>
+						<center> <img src="<?php echo esc_url( $topAds['url'] ); ?>" alt="<?php echo esc_attr( $topAds['alt'] ); ?>" target="_blank"> </center>
+						<hr>
+					<?php } ?>
 					<div class="wrap__article-detail-image mt-4">
-						<figure>
-							<img src="<?php echo esc_url( $thumbnailURL ); ?>" alt="<?php echo esc_attr( the_title() ); ?>" class="img-fluid">
-						</figure>
+						<center>
+							<figure>
+								<img src="<?php echo esc_url( $thumbnailURL ); ?>" alt="<?php echo esc_attr( the_title() ); ?>" class="img-fluid">
+							</figure>
+						</center>
 					</div>
 					<hr>
 					<div class="wrap__article-detail-content">
@@ -58,13 +76,15 @@ $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 				</div>
 				<!-- end content article detail -->
 				<?php
-				$tagTerms = get_tags(array('hide_empty' => false));
+				$relatedTags = get_the_tags();
+				//var_dump($relatedTags);
+				$tagTerms = get_the_tags( get_the_ID() );
 				if ( $tagTerms ) {
 					?>
 					<!-- tags -->
 					<!-- News Tags -->
 					<div class="blog-tags">
-						<ul class="list-inline">
+						<ul class="list-inline" id="tag-lists">
 							<li class="list-inline-item"> <i class="fa fa-tags">
 							</i> </li>
 							<?php
@@ -76,6 +96,13 @@ $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 								</a> </li>
 							<?php endforeach; ?>
 						</ul>
+						<div class="col-md-12 mt-4">
+							<div class="container">
+								<div class="col-md-12 pl-md-0">
+									<button class="btn btn-primary" id="loadmore_tag" style="display: none;">View More</button>	
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- end tags-->
 				<?php } ?>				
@@ -117,7 +144,8 @@ $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 								array( 
 									'category__in' => wp_get_post_categories($post->ID), 
 									'numberposts' => 10, 
-									'post__not_in' => array($post->ID) 
+									'post__not_in' => array($post->ID),
+									'orderby'		=> 'rand',
 								) 
 							);
 							if ( $related ) {
@@ -130,7 +158,7 @@ $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
 										$thumbnailURL = $thumbnail;
 									}
 									else {
-										$thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+										$thumbnailURL = get_template_directory_uri().'/images/news-default.png';
 									}
 									?>
 									<div class="item">

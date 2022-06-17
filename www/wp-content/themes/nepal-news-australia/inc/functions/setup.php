@@ -156,3 +156,21 @@ add_filter('login_headerurl', 'custom_loginlogo_url');
 function custom_loginlogo_url($url) {
      return home_url('/');
 }
+
+// delete transient 
+add_action( 'save_post', 'delete_custom_created_transient'  );
+add_action( 'delete_post', 'delete_custom_created_transient'  );
+function delete_custom_created_transient() {
+    delete_transient('aus_news_transient');
+    delete_transient('latest_news_transient');
+    delete_transient('nepal_news_transient');
+    delete_transient('slider_news_transient');
+    delete_transient('three_col1_news_transient');
+    delete_transient('three_col2_news_transient');
+    delete_transient('three_col3_news_transient');
+    delete_transient('two_news_three_col1_transient');
+    delete_transient('two_news_three_col2_transient');
+    delete_transient('two_news_three_col3_transient');
+    delete_transient('two_news_two_col1_transient');
+    delete_transient('two_news_two_col2_transient');
+}

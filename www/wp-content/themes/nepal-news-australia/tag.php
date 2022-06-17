@@ -18,7 +18,7 @@ $parentSingle = get_posts( $tagArgs );
       <div class="row">
          <div class="col-md-12">
             <div class="container">
-             <div class="title-head">
+              <div class="title-head">
                <div class="row justify-content-center">
                   <div class="col-md-6 col-sm-12 text-center">
                      <h1>
@@ -41,7 +41,7 @@ $parentSingle = get_posts( $tagArgs );
                      $thumbnailURL = $thumbnail;
                   }
                   else {
-                     $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                     $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                   }
                   ?>
                   <div class="col-lg-4">
@@ -80,13 +80,14 @@ $parentSingle = get_posts( $tagArgs );
    </div>
    <?php if ( $postFound > $ppp ) : ?>
       <div class="col-md-12">
-       <div class="container">
-        <div class="col-md-12">
-         <center><button class="btn btn-primary" id="loadmore_post">Load More</button></center>
+        <div class="container">
+          <div class="col-md-12">
+            <center><button class="btn btn-primary" id="loadmore_post">Load More</button>
+               <div id="loader"><img src="<?php echo get_template_directory_uri(); ?>/images/infinity.svg" alt="Loading" style="display: none;" /></div></center>
+            </div>
+         </div>
       </div>
-   </div>
-</div>
-<?php endif; ?>
+   <?php endif; ?>
 </div>
 </section>
 <?php

@@ -33,80 +33,29 @@
                 "id": ""
             },
             "message": "",
-            "default_value": 1,
+            "default_value": 0,
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
-            "key": "field_629103e17afc6",
-            "label": "Choose Highlighted News",
-            "name": "choose_highlighted_news",
-            "type": "repeater",
+            "key": "field_62a6da3ed66de",
+            "label": "Number of News To Show",
+            "name": "na_number_of_news_to_show",
+            "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6290e62c6f86f",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add New News",
-            "sub_fields": [
-                {
-                    "key": "field_6291041f7afc8",
-                    "label": "News",
-                    "name": "highlighted_news",
-                    "type": "post_object",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "post_type": [
-                        "post"
-                    ],
-                    "taxonomy": "",
-                    "allow_null": 0,
-                    "multiple": 0,
-                    "return_format": "object",
-                    "ui": 1
-                },
-                {
-                    "key": "field_629104377afc9",
-                    "label": "Show Image",
-                    "name": "highlighted_show_image",
-                    "type": "true_false",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 1,
-                    "ui_on_text": "Show",
-                    "ui_off_text": "Hide"
-                }
-            ]
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -127,5 +76,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1653671800
+    "modified": 1655102756
 }

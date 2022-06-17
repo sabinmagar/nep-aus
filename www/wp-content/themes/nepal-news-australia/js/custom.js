@@ -5,35 +5,37 @@
  */
  var wtn;
  ( function($) {
- 	wtn = {
- 		init: function () {
- 			this.normal_script();
- 			this.loadmore_post();			
- 		},
- 		ie: function () {
- 			try {
- 				if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
- 					$('body').addClass('ie-user');
- 					return true;
- 				}
- 			} catch (err) {
- 				console.log(err);
- 			}
- 			return false;
- 		},
- 		normal_script: function () {
- 			jQuery('#menu-footer-menu').addClass('list-unstyled');
- 			jQuery('#menu-footer-menu li').removeClass().addClass('list-inline-item');
- 		},
- 		loadmore_post: function() {
-            var page = 2;
-            var ppp = jQuery('#ppp').data('value');
+    wtn = {
+        init: function () {
+            this.normal_script();
+            this.loadmore_post();           
+            this.loadmore_tag();           
+            this.skip_ads();           
+        },
+        ie: function () {
+            try {
+               if (/MSIE (\d+\.\d+);/.test(navigator.userAgent) || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                  $('body').addClass('ie-user');
+                  return true;
+              }
+          } catch (err) {
+           console.log(err);
+       }
+       return false;
+   },
+   normal_script: function () {
+    jQuery('#menu-footer-widget').addClass('list-unstyled');
+    jQuery('#menu-footer-widget li').removeClass().addClass('list-inline-item');
+},
+loadmore_post: function() {
+    var page = 2;
+    var ppp = jQuery('#ppp').data('value');
             var catID = jQuery('#catID').data('value'); // for category and tag
             var name = jQuery('#name').data('value'); // for category and tag
             var s = jQuery('#s').data('value'); // for search page
             var post_count = jQuery('#post_append').data('count')
             var ajaxURL = NEPAUSobj.ajaxurl;
-            var token = NEPAUSobj.token;	
+            var token = NEPAUSobj.token;    
             jQuery('#loadmore_post').click(function(e) {
                 e.preventDefault();
                 var button = $(this),
@@ -51,12 +53,14 @@
             data : data,
             type : 'POST',
             beforeSend : function ( xhr ) {
-                button.text('Loading...'); 
+                jQuery('#loader img').show();
+                jQuery('#loadmore_post').hide();
             },
             success : function( response ){
                 if( response ) { 
-                    button.text( 'Load More' ); 
                     jQuery('#post_append').append(response.data);
+                    jQuery('#loader img').hide();
+                    jQuery('#loadmore_post').show();
                     if ( page == post_count ) {
                         button.remove(); 
                     }
@@ -68,6 +72,53 @@
         });
 
             });
+        },
+        loadmore_tag: function() {
+            var list = jQuery('ul#tag-lists li');
+            var button = jQuery('#loadmore_tag');
+            var numInList = list.length;
+            if ( list > 20 ) {
+                var numToShow = Math.round( numInList / 3 );
+            }
+            else {
+                var numToShow = 10;
+            }
+            list.hide();
+            if (numInList > numToShow) {
+                button.show();
+            }
+            list.slice(0, numToShow).show();
+            button.click(function(){
+              var showing = list.filter(':visible').length;
+              list.slice(showing - 1, showing + numToShow).fadeIn();
+              var nowShowing = list.filter(':visible').length;
+              if (nowShowing >= numInList) {
+                button.hide();
+            }
+        });
+        },
+        skip_ads: function () {
+            jQuery(".modalbox");
+            setTimeout(function () {
+                jQuery(".modalbox").fadeOut("fast");
+    }, 5000); // 1000 = 1 second
+
+            jQuery(document).ready(function () {
+        // image overlapped  for big images on editor
+        jQuery(".detail-box .editor-box")
+        .find("img")
+        .each(function () {
+            var imageWidth = jQuery(this).width();
+                //console.log(imageWidth);
+                //alert(this.width + " by " + this.height);
+                if (imageWidth > 500) {
+                    jQuery(this).addClass("pull-img-left");
+                }
+                if (imageWidth < 500 && imageWidth > 10) {
+                    jQuery(this).parent(".image").width(jQuery(this).width());
+                }
+            });
+    });
         }
     };
     $(function () {

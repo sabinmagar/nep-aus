@@ -15,7 +15,12 @@ if ( $twoNewsTwoColEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => 3,
    );
-   $parentFirstNewsCol = get_posts( $firstNewsColArgs );
+   // cache for Query
+   $parentFirstNewsCol = get_transient( 'two_news_two_col1_transient' );
+   if ( false === $parentFirstNewsCol ) {
+      $parentFirstNewsCol = get_posts( $firstNewsColArgs );      
+      set_transient( 'two_news_two_col1_transient', $parentFirstNewsCol, DAY_IN_SECONDS );
+   }
    ?>
    <!-- Byaapar Content news -->
    <section class="bg-content bg-off-white">
@@ -37,7 +42,7 @@ if ( $twoNewsTwoColEnable ) {
                               $thumbnailURL = $thumbnail;
                            }
                            else {
-                              $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                              $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                            }
                            ?>
                            <!-- Post Article List -->
@@ -89,7 +94,12 @@ if ( $twoNewsTwoColEnable ) {
             'post_status'     => 'publish',
             'posts_per_page'  => 5,
          );
-         $parentSecondNewsCol = get_posts( $secondNewsColArgs );
+         // cache for Query
+         $parentSecondNewsCol = get_transient( 'two_news_two_col2_transient' );
+         if ( false === $parentSecondNewsCol ) {
+            $parentSecondNewsCol = get_posts( $secondNewsColArgs );      
+            set_transient( 'two_news_two_col2_transient', $parentSecondNewsCol, DAY_IN_SECONDS );
+         }
          if ( $parentSecondNewsCol ) {
             ?>
             <div class="col-md-4">
@@ -109,7 +119,7 @@ if ( $twoNewsTwoColEnable ) {
                               $thumbnailURL = $thumbnail;
                            }
                            else {
-                              $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                              $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                            }
                            ?>
                            <!-- Post Article -->
@@ -136,7 +146,7 @@ if ( $twoNewsTwoColEnable ) {
                            $thumbnailURL = $thumbnail;
                         }
                         else {
-                           $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                           $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                         }
                         ?>
                         <div class="mb-3">

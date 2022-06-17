@@ -16,7 +16,12 @@ if ( $threeColNewsEnable ) {
       'post_status'     => 'publish',
       'posts_per_page'  => 3,
    );
-   $parentThreeColNews = get_posts( $threeColNewsArgs );
+   // cache for Query
+   $parentThreeColNews = get_transient( 'three_col1_news_transient' );
+   if ( false === $parentThreeColNews ) {
+      $parentThreeColNews = get_posts( $threeColNewsArgs );      
+      set_transient( 'three_col1_news_transient', $parentThreeColNews, DAY_IN_SECONDS );
+   }
    $newsColumnIDs = array();
    ?>
    <!-- Australia Content news -->
@@ -43,14 +48,14 @@ if ( $threeColNewsEnable ) {
                                  $thumbnailURL = $thumbnail;
                               }
                               else {
-                                 $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                                 $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                               }
                               ?>
                               <!-- Post Article -->
                               <div class="article__entry">
                                  <div class="article__image">
                                     <a href="<?php echo esc_url( the_permalink() ); ?>">
-                                       <img src="<?php echo esc_url( $thumbnail ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                                       <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                                     </a>
                                  </div>
                                  <div class="article__content">
@@ -71,7 +76,7 @@ if ( $threeColNewsEnable ) {
                               $thumbnailURL = $thumbnail;
                            }
                            else {
-                              $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                              $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                            }
                            ?>
                            <div class="mb-3">
@@ -79,7 +84,7 @@ if ( $threeColNewsEnable ) {
                               <div class="card__post card__post-list">
                                  <div class="image-sm">
                                     <a href="<?php echo esc_url( the_permalink() ); ?>">
-                                       <img src="<?php echo esc_url( $thumbnail ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                                       <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                                     </a>
                                  </div>
                                  <div class="card__post__body ">
@@ -112,7 +117,12 @@ if ( $threeColNewsEnable ) {
                   'post__not_in'    => $newsColumnIDs,
                   'posts_per_page'  => 3,
                );
-                $parentThreeColNews = get_posts( $threeColNewsArgs );
+                // cache for Query
+                $parentThreeColNews = get_transient( 'three_col2_news_transient' );
+                if ( false === $parentThreeColNews ) {
+                  $parentThreeColNews = get_posts( $threeColNewsArgs );       
+                  set_transient( 'three_col2_news_transient', $parentThreeColNews, DAY_IN_SECONDS );
+               }
                 ?>
                 <div class="col-lg-4 pd-0">
                   <?php
@@ -129,14 +139,14 @@ if ( $threeColNewsEnable ) {
                            $thumbnailURL = $thumbnail;
                         }
                         else {
-                           $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                           $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                         }
                         ?>
                         <!-- Post Article -->
                         <div class="article__entry">
                            <div class="article__image">
                               <a href="<?php echo esc_url( the_permalink() ); ?>">
-                                 <img src="<?php echo esc_url( $thumbnail ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                                 <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                               </a>
                            </div>
                            <div class="article__content">
@@ -157,7 +167,7 @@ if ( $threeColNewsEnable ) {
                         $thumbnailURL = $thumbnail;
                      }
                      else {
-                        $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                        $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                      }
                      ?>
                      <div class="mb-3">
@@ -165,7 +175,7 @@ if ( $threeColNewsEnable ) {
                         <div class="card__post card__post-list">
                            <div class="image-sm">
                               <a href="<?php echo esc_url( the_permalink() ); ?>">
-                                 <img src="<?php echo esc_url( $thumbnail ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                                 <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                               </a>
                            </div>
                            <div class="card__post__body ">
@@ -198,7 +208,12 @@ if ( $threeColNewsEnable ) {
             'post__not_in'    => $newsColumnIDs,
             'posts_per_page'  => 3,
          );
-          $parentThreeColNews = get_posts( $threeColNewsArgs );
+          // cache for Query
+          $parentThreeColNews = get_transient( 'three_col3_news_transient' );
+          if ( false === $parentThreeColNews ) {
+            $parentThreeColNews = get_posts( $threeColNewsArgs );       
+            set_transient( 'three_col3_news_transient', $parentThreeColNews, DAY_IN_SECONDS );
+         }
           ?>
           <div class="col-lg-4 pd-0">
             <?php
@@ -213,14 +228,14 @@ if ( $threeColNewsEnable ) {
                      $thumbnailURL = $thumbnail;
                   }
                   else {
-                     $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                     $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                   }
                   ?>
                   <!-- Post Article -->
                   <div class="article__entry">
                      <div class="article__image">
                         <a href="<?php echo esc_url( the_permalink() ); ?>">
-                           <img src="<?php echo esc_url( $thumbnail ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                           <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                         </a>
                      </div>
                      <div class="article__content">
@@ -241,7 +256,7 @@ if ( $threeColNewsEnable ) {
                   $thumbnailURL = $thumbnail;
                }
                else {
-                  $thumbnailURL = get_the_post_thumbnail_url( $uniqueID, 'full');
+                  $thumbnailURL = get_template_directory_uri().'/images/news-default.png';
                }
                ?>
                <div class="mb-3">
@@ -249,7 +264,7 @@ if ( $threeColNewsEnable ) {
                   <div class="card__post card__post-list">
                      <div class="image-sm">
                         <a href="<?php echo esc_url( the_permalink() ); ?>">
-                           <img src="<?php echo esc_url( $thumbnail ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                           <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                         </a>
                      </div>
                      <div class="card__post__body ">
