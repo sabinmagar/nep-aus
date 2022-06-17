@@ -13,7 +13,11 @@ if ( $_GET['s'] && !empty( $_GET['s']) ) {
 	$searchText = $_GET['s'];
 	$query1 = new WP_Query(array('post_type' => 'post', 'post_status' => 'publish', 'paged' => 1, 'posts_per_page' => -1, 's' => $searchText, 'orderby' => 'rand'));
 	$postFound = ( $query1->found_posts );
+<<<<<<< HEAD
 	$ppp = 21;
+=======
+	$ppp = 18;
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
 	$catID = '';
 	$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	$searchArgs = array(

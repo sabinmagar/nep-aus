@@ -13,4 +13,4 @@ error_log
 composer.lock
 package-lock.json
 phpcs.xml.dist
-
+uploads/

@@ -257,7 +257,11 @@
             "mime_types": ""
         },
         {
+<<<<<<< HEAD
             "key": "field_62a6e7f7b5132",
+=======
+            "key": "field_62a6e380d36bb",
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
             "label": "Skip Ads",
             "name": "",
             "type": "tab",
@@ -273,7 +277,11 @@
             "endpoint": 0
         },
         {
+<<<<<<< HEAD
             "key": "field_62a6e801b5133",
+=======
+            "key": "field_62a6e51c57db7",
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
             "label": "Enable Skip Ads",
             "name": "na_enable_skip_ads",
             "type": "true_false",
@@ -292,7 +300,11 @@
             "ui_off_text": ""
         },
         {
+<<<<<<< HEAD
             "key": "field_62a6e810b5134",
+=======
+            "key": "field_62a6e38fd36bc",
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
             "label": "Image For Desktop",
             "name": "na_image_for_desktop",
             "type": "image",
@@ -301,7 +313,11 @@
             "conditional_logic": [
                 [
                     {
+<<<<<<< HEAD
                         "field": "field_62a6e801b5133",
+=======
+                        "field": "field_62a6e51c57db7",
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
                         "operator": "==",
                         "value": "1"
                     }
@@ -324,7 +340,11 @@
             "mime_types": ""
         },
         {
+<<<<<<< HEAD
             "key": "field_62a6e82cb5135",
+=======
+            "key": "field_62a6e39ad36bd",
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
             "label": "Image For Mobile",
             "name": "na_image_for_mobile",
             "type": "image",
@@ -333,7 +353,11 @@
             "conditional_logic": [
                 [
                     {
+<<<<<<< HEAD
                         "field": "field_62a6e801b5133",
+=======
+                        "field": "field_62a6e51c57db7",
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
                         "operator": "==",
                         "value": "1"
                     }
@@ -374,5 +398,9 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
+<<<<<<< HEAD
     "modified": 1655106876
+=======
+    "modified": 1655104916
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
 }

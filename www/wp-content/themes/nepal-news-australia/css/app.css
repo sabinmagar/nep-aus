@@ -17511,7 +17511,10 @@ body.offcanvas-active {
   }
 }
 
+<<<<<<< HEAD
 /* Skip Ads  */
+=======
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
 .jacket-ad-mobile {
 display: none; }
 
@@ -17800,6 +17803,12 @@ display:none;
     }
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 
 
@@ -17843,9 +17852,12 @@ display:none;
 
   .modalbox .modal_content .imagebox .jacket-ad-mobile img {
     max-width: 80% !important; } }
+<<<<<<< HEAD
     
     
 .adsimg {    
     border: 1px solid #ececec;
     border-radius: 5px;
 }
+=======
+>>>>>>> dc6392853bf50cd22d0c2777eb3c9bebdfe86c9c
