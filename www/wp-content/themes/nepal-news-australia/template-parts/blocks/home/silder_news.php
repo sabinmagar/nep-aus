@@ -53,7 +53,7 @@ if ( $slideNewsEnable ) {
                                     <div class="article__entry">
                                        <div class="article__image">
                                           <a href="<?php echo esc_url( the_permalink() ); ?>">
-                                           <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                                           <img loading="lazy" src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                                         </a>
                                      </div>
                                      <div class="article__content">

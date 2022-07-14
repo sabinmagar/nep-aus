@@ -23,31 +23,58 @@
     <?php wp_head(); ?>
  </head>
  <body <?php body_class(); ?>>
-   <?php wp_body_open(); ?>
-   <?php 
-   $enableSkipAds = get_field('na_enable_skip_ads','option');
-   if ( $enableSkipAds ) {
-      $desktopImage = get_field('na_image_for_desktop','option');
-      $mobileImage = get_field('na_image_for_mobile','option');
-      ?>
-      <!--<popup>-->
-       <div class="modalbox" id="inner-jacket">
-         <div class="modal_content">
-           <div class="imagebox">
-             <div class="logobox">
-               <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="logo" />
+   <?php wp_body_open();
+   $custom_logo_id = get_theme_mod( 'custom_logo' ); // API Call
+   $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
+   if ( is_home() || is_front_page() ) {
+      $enableSkipAds = get_field('na_enable_skip_ads','option');
+      if ( $enableSkipAds ) {
+         ?>
+         <!--<popup>-->
+          <div class="modalbox" id="inner-jacket">
+            <div class="modal_content">
+              <div class="imagebox">
+                <div class="logobox">
+                  <?php 
+                  if ( has_custom_logo() ) { ?>
+                     <img src="<?php echo esc_url( $logo[0] ); ?>" alt="logo" />
+                     <?php
+                  }
+                  else { ?>
+                     <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="logo" />
+                     <?php
+                  }
+                  ?>
+               </div>
+               <div class="close-box">
+                  <a class="close_btn" href="javascript:void(0)" onclick="document.getElementById('inner-jacket').style.display='none'" title="Skip Ad">Skip Ad</a>
+               </div>
+               <?php 
+               if ( !wp_is_mobile() ) {
+                  $skipAdsImage = get_field('na_image_for_desktop','option');
+                  ?>
+                  <a href="<?php echo $skipAdsImage['caption']; ?>" title="" target="_blank" class="jacket-ad-desktop">
+                     <img src="<?php echo esc_url( $skipAdsImage['url'] ); ?>" alt="<?php echo esc_attr( $skipAdsImage['alt'] ); ?>" />
+                  </a>
+                  <?php
+               }
+               else {
+                  $skipAdsImage = get_field('na_image_for_mobile','option');
+                  ?>
+                  <a href="<?php echo $skipAdsImage['caption']; ?>" title="" target="_blank" class="jacket-ad-mobile">
+                     <img src="<?php echo esc_url( $skipAdsImage['url'] ); ?>" alt="<?php echo esc_attr( $skipAdsImage['alt'] ); ?>" />
+                  </a>
+                  <?php
+               }
+               ?>         
             </div>
-            <div class="close-box">
-               <a class="close_btn" href="javascript:void(0)" onclick="document.getElementById('inner-jacket').style.display='none'" title="Skip Ad">Skip Ad</a>
-            </div>
-
-            <a href="#" title="" target="_blank" class="jacket-ad-desktop"> <img src="<?php echo esc_url( $desktopImage['url'] ); ?>" alt="" /> </a>
-            <a href="#" title="" target="_blank" class="jacket-ad-mobile"> <img src="mobile.jpg" alt="" /> </a>
          </div>
       </div>
-   </div>
-   <!--</popup>-->
-<?php } ?>
+      <!--</popup>-->
+      <?php
+   }
+}
+?>
 <!-- Header news -->
 <header>
    <!-- Navbar  -->
@@ -106,66 +133,71 @@
       <div class="container">
          <div class="row">
             <div class=" col-sm-12 col-md-4 my-auto d-none d-sm-block ">
-               <?php 
-                     $custom_logo_id = get_theme_mod( 'custom_logo' ); // API Call
-                     $logo = wp_get_attachment_image_src( $custom_logo_id , 'full' );
-                     ?>
-                     <figure class="mb-0">
-                        <a href="<?php echo esc_url( home_url('/') ); ?>">
-                           <?php 
-                           if ( has_custom_logo() ) { ?>
-                              <img src="<?php echo esc_url( $logo[0] ); ?>" alt="Site Logo" class="img-fluid logo">
-                              <?php
-                           }
-                           else { ?>
-                              <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="" class="img-fluid logo">
-                              <?php
-                           }
-                           ?>
-                        </a>
-                     </figure>
-                  </div>
-                  <?php 
-                  $navbarAds = get_field('header_ads','option');
-                  if ( $navbarAds ) {
-                     if ( $navbarAds['caption'] ) {
-                        $navbarAdsLink = $navbarAds['caption'];
+               <figure class="mb-0">
+                  <a href="<?php echo esc_url( home_url('/') ); ?>">
+                     <?php 
+                     if ( has_custom_logo() ) { ?>
+                        <img src="<?php echo esc_url( $logo[0] ); ?>" alt="Site Logo" class="img-fluid logo" />
+                        <?php
                      }
-                     else {
-                        $navbarAdsLink = '#';
+                     else { ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="" class="img-fluid logo" />
+                        <?php
                      }
                      ?>
-                     <div class="col-md-8 d-none d-sm-block text-right">
-                        <figure class="mt-3 ">
-                           <a href="<?php echo esc_url( $navbarAdsLink ); ?>">
-                              <img src="<?php echo esc_url( $navbarAds['url'] ); ?>" alt="<?php echo esc_attr( $navbarAds['alt'] ); ?>" class="img-fluid">
-                           </a>
-                        </figure>
-                     </div>
-                  <?php } ?>
-               </div>
+                  </a>
+               </figure>
             </div>
-         </div>
-         <!-- end logo -->
-         <!-- navbar -->
-         <div class="navigation-wrap navigation-shadow bg-white">
-            <nav class="navbar navbar-hover navbar-expand-lg navbar-soft  ">
-               <div class="container">
-                  <div class="offcanvas-header">
-                     <div data-toggle="modal" data-target="#modal_aside_right" class="btn-md">
-                        <span class="navbar-toggler-icon"></span>
-                     </div>
-                  </div>
-                  <figure class="mb-0 mx-auto d-block d-sm-none sticky-logo mt-4">
-                     <a href="<?php echo esc_url( home_url('/') ); ?>">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="" class="img-fluid logo">
+            <?php 
+            $navbarAds = get_field('header_ads','option');
+            if ( $navbarAds ) {
+               if ( $navbarAds['caption'] ) {
+                  $navbarAdsLink = $navbarAds['caption'];
+               }
+               else {
+                  $navbarAdsLink = '#';
+               }
+               ?>
+               <div class="col-md-8 d-none d-sm-block text-right">
+                  <figure class="mt-3 ">
+                     <a href="<?php echo esc_url( $navbarAdsLink ); ?>">
+                        <img src="<?php echo esc_url( $navbarAds['url'] ); ?>" alt="<?php echo esc_attr( $navbarAds['alt'] ); ?>" class="img-fluid" />
                      </a>
                   </figure>
-                  <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
-                     <?php 
-                     wp_nav_menu( array(
-                        'theme_location'  => 'menu-1',
-                        'container'       => false,
+               </div>
+            <?php } ?>
+         </div>
+      </div>
+   </div>
+   <!-- end logo -->
+   <!-- navbar -->
+   <div class="navigation-wrap navigation-shadow bg-white">
+      <nav class="navbar navbar-hover navbar-expand-lg navbar-soft  ">
+         <div class="container">
+            <div class="offcanvas-header">
+               <div data-toggle="modal" data-target="#modal_aside_right" class="btn-md">
+                  <span class="navbar-toggler-icon"></span>
+               </div>
+            </div>
+            <figure class="mb-0 mx-auto d-block d-sm-none sticky-logo mt-4">
+               <a href="<?php echo esc_url( home_url('/') ); ?>">
+                  <?php 
+                     if ( has_custom_logo() ) { ?>
+                        <img src="<?php echo esc_url( $logo[0] ); ?>" alt="Site Logo" class="img-fluid logo" />
+                        <?php
+                     }
+                     else { ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="" class="img-fluid logo" />
+                        <?php
+                     }
+                     ?>
+               </a>
+            </figure>
+            <div class="collapse navbar-collapse justify-content-between" id="main_nav99">
+               <?php 
+               wp_nav_menu( array(
+                  'theme_location'  => 'menu-1',
+                  'container'       => false,
                         'depth'           => 1, // 1 no dropdown
                         'menu_class'      => 'navbar-nav',
                         'menu_id'         => '',

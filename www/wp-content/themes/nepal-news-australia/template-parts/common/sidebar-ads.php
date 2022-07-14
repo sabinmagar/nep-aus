@@ -81,7 +81,7 @@ $forCubes = get_field('four_cube','option');
                ?>
                <a href="<?php echo esc_url( $belowAdsUrl ); ?>">
                 <figure>
-                  <img src="<?php echo esc_url( $belowCubeImageUrl ); ?>" alt="<?php echo esc_attr( $belowAds['alt'] ); ?>" class="img-fluid">
+                  <img src="<?php echo esc_url( $belowCubeImageUrl ); ?>" alt="<?php echo esc_attr( $belowAds['alt'] ); ?>" class="img-fluid adsimg">
                </figure>
             </a>
             <?php 

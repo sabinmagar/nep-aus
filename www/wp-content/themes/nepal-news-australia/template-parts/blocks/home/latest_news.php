@@ -44,7 +44,7 @@ if ( $latestNewsEnable ) {
                      <div class="card__post">
                         <div class="card__post__body">
                            <a href="<?php echo esc_url( the_permalink() ); ?>">
-                              <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
+                              <img loading="lazy" src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid" alt="<?php echo esc_attr( the_title() ); ?>">
                            </a>
                            <div class="card__post__content bg__post-cover">
                               <div class="card__post__title">

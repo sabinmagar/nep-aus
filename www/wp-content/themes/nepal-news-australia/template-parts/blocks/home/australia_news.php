@@ -52,7 +52,7 @@ if ( $australiaNewsEnable ) {
                              <div class="col-md-5">
                                 <div class="card__post__transition">
                                    <a href="<?php echo esc_url( the_permalink() ); ?>">
-                                      <img src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid w-100" alt="<?php echo esc_attr( the_title() ); ?>">
+                                      <img loading="lazy" src="<?php echo esc_url( $thumbnailURL ); ?>" class="img-fluid w-100" alt="<?php echo esc_attr( the_title() ); ?>">
                                    </a>
                                 </div>
                              </div>
